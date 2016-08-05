@@ -7,6 +7,7 @@ class SeatComponent {
     this.$http = $http;
     this.socket = socket;
     this.awesomeThings = [];
+
 this.seat2=[];
 this.seats=[];
 this.ss=1;
@@ -33,8 +34,9 @@ var price=this.seats[0].price;
 
 console.log(this.selectedseat);
 var color=document.getElementById(seat).getAttribute("style");
+var bcolor=document.getElementById(seat).getAttribute("style");
 
-if(this.ss<=a && color!="fill:green")
+if(this.ss<=a && color!="fill:green" && bcolor!="fill:brown")
 {
   document.getElementById(seat).setAttribute("style","fill:green");
 
@@ -65,6 +67,10 @@ if(data>-1)
   else if(a==null)
   {
     alert("please choice number of seats ")
+  }
+  else if(bcolor=="fill:brown")
+  {
+    alert("seat already book");
   }
   else{
     alert("all seat selected ")
@@ -110,6 +116,26 @@ this.name1=sessionStorage.getItem('name');
 
       this.socket.syncUpdates('thing', this.awesomeThings);
     });
+
+    this.$http.get('/api/payments')
+      .then(response => {
+        this.seat2=response.data;
+    //    console.log(this.seat2[0].selectedseat);
+for(var i=0;i<=response.data.length;i++)
+{
+        if(this.date==this.seat2[i].showdate && this.time==this.seat2[i].Showtime && this.name1==this.seat2[i].theater)
+        {
+          var booked=this.seat2[i].selectedseat.toString();
+          var d=booked.split(",")
+
+          for(var i=0;i<=d.length;i++)
+          {
+          document.getElementById(d[i]).setAttribute("style","fill:brown");
+          }
+        }
+}
+
+      });
 }}
 
 angular.module('merafilmApp')

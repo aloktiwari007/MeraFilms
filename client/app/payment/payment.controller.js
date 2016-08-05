@@ -3,8 +3,9 @@
 (function(){
 
 class PaymentComponent {
-  constructor() {
-    this.message = 'Hello';
+  constructor($http, $scope, socket) {
+    this.$http = $http;
+    this.socket = socket;
     this.year=[];
 this.movietitle;
 this.time;
@@ -20,6 +21,9 @@ this.bookingfee=25;
 this.s_tax=14;
 this.sbharat=0.5;
 this.krishi=0.5;
+$scope.$on('$destroy', function() {
+  socket.unsyncUpdates('thing');
+});
   }
 
 totalpayablebill()
@@ -34,18 +38,8 @@ else
     this.v--;
 
 
-}}
-
- //  var t_bill=this.price;
- //   if(this.v==1)
- //   {
- //     var vat=15;
- //   this.vat=this.price*vat/100;
- // this.totalbill=this.price+this.vat;
-
-
-
-
+}
+}
 
 
  $onInit()
@@ -85,6 +79,49 @@ else
 
 }
 
+addthing()
+{
+  var number=this.number.toString();
+  console.log();
+  var cname=this.name;
+  //var cvv=this.cvv.toString();
+  //if(number.length==16 && cname.length>=4 && cvv.length>=4)
+  {
+alert("details not valid");
+  }
+  //else
+   {
+
+
+
+        this.$http.post('/api/payments', {
+
+          theater:this.theartername,
+          showdate:this.date,
+          Showtime:this.time,
+          selectedseat:this.seat,
+          bill:[{
+
+        "ticketamount":this.price,
+        "bookingfee":this.bookingfee,
+          "servicetax":this.s_tax,
+          "swachhbharatcess":this.sbharat,
+          "krishikalyancess":this.krishi,
+
+        }],
+
+        state:this.state
+
+
+
+
+
+        });
+
+alert("data insted");
+
+}
+}
 
 }
 

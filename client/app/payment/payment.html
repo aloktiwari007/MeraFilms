@@ -8,14 +8,14 @@
         <div class="panel-heading"><h4><span>Payment Details</span></h4></div>
         <div class="panel-body">
 
-<form class="form-group">
+<form class="form-group" name="form">
 
 <table class="table table-responsive">
   <tr><td>
-  <input type="number" class="form-control" placeholder="card number"/>
+  <input type="number" name="number" class="form-control" placeholder="card number"  ng-model="$ctrl.number" required/>
 
 </td></tr>
-<tr><td>  <input type="text"   class="form-control"  placeholder="Name on Card"/></td></tr>
+<tr><td>  <input type="text"   class="form-control"  placeholder="Name on Card" ng-model="$ctrl.name" required/></td></tr>
 <tr><td><h5>Exp Month:
 <select class="selectpicker">
 <option value="01">01(Jan)</option>
@@ -36,7 +36,7 @@
 
 
 Exp Year: <select class="selectpicker">
-<option  ng-repeat="y in $ctrl.year" value="{{y}}">{{y}}</option>
+<option  ng-repeat="y in $ctrl.year" value="{{y}}" >{{y}}</option>
 
 </select>
 </h5>
@@ -44,12 +44,12 @@ Exp Year: <select class="selectpicker">
 </tr>
 <tr>
   <td>
-<input type="number" placeholder="cvv"/>
+<input type="number" placeholder="cvv" ng-model="cvv"  required/>
 </td>
 </tr>
 <tr>
   <td>
-    <button class="btn btn-danger">Pay</button>
+    <button class="btn btn-danger" ng-click="$ctrl.addthing()" ng-if="!form.$invalid">Pay</button>
   </td>
 </tr>
 </table>
