@@ -17,6 +17,11 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/payment/payment.socket').register(socket);
+  require('../api/info/info.socket').register(socket);
+  require('../api/seat/seat.socket').register(socket);
+  require('../api/theraterallocate/theraterallocate.socket').register(socket);
+  require('../api/theatre/theatre.socket').register(socket);
   require('../api/omdbiendpoint/omdbiendpoint.socket').register(socket);
   require('../api/moviesendpoint/moviesendpoint.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);

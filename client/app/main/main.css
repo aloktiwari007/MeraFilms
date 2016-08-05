@@ -22,6 +22,20 @@
   background: #4393B9;
 }
 
+.nospace{
+
+  padding:0;
+}
+
 .navbar-text {
   margin-left: 15px;
+}
+
+.img{
+  opacity: 0.5;
+
+}
+.img-hover
+{
+opacity: 1;
 }

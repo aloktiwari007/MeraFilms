@@ -66,6 +66,9 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+
+
+
 // Gets a single Omdbiendpoint from the DB
 export function show(req, res) {
   // return Omdbiendpoint.findById(req.params.id).exec()
@@ -96,6 +99,14 @@ export function update(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
+export function showmovie(req, res) {
+  return Omdbiendpoint.find({title:req.params.title}).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 
 // Deletes a Omdbiendpoint from the DB
 export function destroy(req, res) {

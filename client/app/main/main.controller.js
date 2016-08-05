@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 (function() {
 
@@ -8,16 +8,28 @@
       this.$http = $http;
       this.socket = socket;
       this.awesomeThings = [];
-
+  $scope.name1="Sultan";
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
     }
 
+click1(movie)
+{
+
+sessionStorage.setItem('movietitle', movie.title);
+// response.send(a);
+//this.$http.session.val="dd";
+   window.location = "/info";
+
+
+}
+
     $onInit() {
-      this.$http.get('/api/things')
+      this.$http.get('/api/omdbiendpoints')
         .then(response => {
           this.awesomeThings = response.data;
+
           this.socket.syncUpdates('thing', this.awesomeThings);
         });
     }

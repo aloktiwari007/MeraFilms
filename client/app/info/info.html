@@ -1,0 +1,89 @@
+
+<div class="container" ng-repeat="x in $ctrl.awesomeThings">
+
+  <div  class="row" style="padding:0" >
+    <div class="col-md-4" style="padding:0">
+
+
+      <img src="{{x.poster}}"  class="img-responsive img-rounded " alt="img"/>
+<p   class="text-nowrap h1"> {{x.title}}
+   <span class="glyphicon glyphicon-heart" style="color:red;font-size:.8em;"  ></span><strong style="font-size:.8em">17%</strong> </p>
+   <span class="badge" style="font-size:1em;" >{{x.genere}}</span>
+
+   <span class="glyphicon glyphicon-time" class="pull-none" style="font-size:1.2em ;"></span>
+   <strong style="font-size:1em">{{$ctrl.totaltime}} </strong>
+
+
+ </div>
+ <div class="col-md-8">
+   <span>
+
+   <div class="embed-responsive embed-responsive-16by9">
+     <iframe class="embed-responsive-item" id="player"  src="https://www.youtube.com/embed/" type="text/html" width="100%" height="450"  allowfullscreen/>
+   </div>
+<span>
+
+
+   </div>
+ </div>
+<!-- first row end -->
+
+    <div class="row">
+      <div class="col-md-4">hello</div>
+      <div class="col-md-4">hello</div>
+
+      <div class="col-md-4"  >
+<label class="label label-info" style="font-size:1.5em">Showing in State</label>
+
+<div  style="margin-top: 10px">
+<span ng-repeat="city in $ctrl.newUniquestate " >
+  <a ng-click="$ctrl.getdate(city)" href="#">
+<span class="badge" >
+  {{city}}
+
+</span>
+</a>
+
+</span>
+</div>
+
+<div  style="margin-top: 20px" ng-if="$ctrl.d==1">
+  <label class="label label-info" style="font-size:1.5em">Showing Date</label>
+  <div style="margin-top: 20px">
+<!-- to select date -->
+<span ng-repeat="date in $ctrl.date track by $index" >
+
+      <a href="#" ng-click=$ctrl.gettime(date,city) > <span class="badge" >{{date}}</span></a>
+</span>
+</div>
+</div>
+<!-- select time -->
+
+<div  style="margin-top: 20px" ng-if="$ctrl.t==1">
+  <label class="label label-info" style="font-size:1.5em">Show Time</label>
+  <div style="margin-top: 20px">
+<span ng-repeat="time in $ctrl.time track by $index" >
+      <a href="" ng-click="$ctrl.gettlocation(time)" > <span class="badge" >{{time}}</span></a>
+</span>
+</div>
+</div>
+
+<div  style="margin-top: 20px" ng-if="$ctrl.tl==1">
+  <label class="label label-info" style="font-size:1.5em">Therater Location</label>
+  <div style="margin-top: 20px">
+<span ng-repeat="name in $ctrl.name track by $index" >
+      <a href="" ng-click="$ctrl.seatselect(name)" > <span class="badge" >{{name}}</span></a>
+</span>
+</div>
+</div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</div>
