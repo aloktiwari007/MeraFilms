@@ -14,6 +14,7 @@ class MoviesComponent {
     });
   }
 
+//retrive items
   $onInit() {
     this.$http.get('/api/moviesendpoints')
       .then(response => {
@@ -22,6 +23,8 @@ class MoviesComponent {
       });
   }
 
+
+//add items
   addThing() {
     if (this.mname && this.mdesc && this.mtime) {
       this.$http.post('/api/moviesendpoints ', {
@@ -32,6 +35,9 @@ class MoviesComponent {
       this.newThing = '';
     }
   }
+
+
+//delete items
 
   deleteThing(moviesendpoint) {
     this.$http.delete('/api/moviesendpoints/' + moviesendpoint._id);
@@ -53,6 +59,8 @@ class MoviesComponent {
       }
 
     }
+
+    //update the record
 
     updateThing(movie) {
         this.$http.put('/api/moviesendpoints/'+movie._id,JSON.stringify(movie));

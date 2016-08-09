@@ -71,10 +71,10 @@ else
    this.sbharat=parseFloat(t_bill*parseFloat(this.sbharat)/100);
    this.krishi=parseFloat(t_bill*parseFloat(this.krishi)/100);
 
-  //vat=parseFloat(t_bill*vat/100);
+  
 
  this.totalbill=parseFloat(t_bill+this.s_tax+this.sbharat+this.krishi);
- console.log(this.totalbill);
+ sessionStorage.setItem('totalbill',this.totalbill);
 
 
 }
@@ -84,12 +84,23 @@ addthing()
   var number=this.number.toString();
   console.log();
   var cname=this.name;
+  var cvv=this.cvv.toString();
   //var cvv=this.cvv.toString();
-  //if(number.length==16 && cname.length>=4 && cvv.length>=4)
+
+  if(number.length<16 )
   {
-alert("details not valid");
+alert("Invalid card number");
   }
-  //else
+  else if( cname.length<3)
+  {
+    alert("Invalid Name on card");
+  }
+  else if( cvv.length!=3  )
+  {
+    alert("Invalid cvv number");
+  }
+
+  else
    {
 
 
@@ -119,6 +130,8 @@ alert("details not valid");
         });
 
 alert("data insted");
+
+ window.location = "/confirmation";
 
 }
 }

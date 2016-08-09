@@ -7,7 +7,7 @@
   </style>
 
 <header class="hero-unit" id="banner">
-  <div class="container-fluid">
+  <div class="container-fulid">
 
 
 
@@ -25,16 +25,16 @@
 
           <div class="item active">
             <img src="/assets/images/caursol/sultan.jpg" alt="Chania" >
+
             <div class="carousel-caption">
 
             </div>
           </div>
 
-          <div class="item">
+          <div class="item" >
             <img src="/assets/images/caursol/pic1.jpg" alt="Chania" >
             <div class="carousel-caption">
-              <h3>Chania</h3>
-              <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+
             </div>
           </div>
 
@@ -72,23 +72,22 @@
   </div>
 </header>
 
-<div class="container">
+<div class="container" style="margin: auto; width: 95%;">
   <div class="row">
 
     <h2 class="page-header" align="center" ><label ><u class=_red-bar>Now Showing</u></label></h2>
     <div  ng-repeat="movie in $ctrl.awesomeThings">
-    <div class="col-md-3 nospace" >
+    <div class="col-md-3 nospace" style = "box-shadow: 2px 2px 20px #000000; margin: 5px; width: 15%;" >
 
-      <img src="{{movie.poster}}" class="img-rounded  "  alt="image"  width="285" height="200"  />
+      <img src="{{movie.poster}}" class="img img-rounded"  alt="image" height="200" style="margin: auto; width: 100%;"  />
 
-      <h3 style="right-pading:10px ;opacity:0.5 " class="text-nowrap"> {{movie.title}}</h3>
+      <h3 style="right-pading:10px ;opacity:0.5; background-color: #AAAAAA; " class="text-nowrap"> {{movie.title}}</h3>
       <h5><span class="label label-pill label-primary">{{movie.language}}</span>
         <span><button class="pull-right img-responsive" title="view traller" ng-click="$ctrl.click1(movie)"><img class="push-right" src="/assets/images/play.jpg"  alt="play"/></button></span></h5>
       <h5><span class="label label-pill label-primary">{{movie.genere}}</span></h5>
       <!-- <form class ="form-group"> -->
-      <button type="button" class="btn btn-default btn-block"   click="alert(helll)">Book Show Ticket</button>
-      <span>  <button type="button" class="btn btn-default btn-block" ng-click="$ctrl.click1(movie)">Information</button>
-    </span><br>
+      <h5><button type="button" class="btn btn-default btn-block label-danger" ng-click="$ctrl.click1(movie)" ><h5>Book Show Ticket</h5></button>
+
 
 
 

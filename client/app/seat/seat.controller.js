@@ -101,11 +101,18 @@ this.name1=sessionStorage.getItem('name');
   var s=sessionStorage.getItem("seat");
  for(var a=0;a<=this.awesomeThings.length;a++)
  {
+   try{
+
+
    if(s==this.awesomeThings[a].seatPlan.count)
    {
      this.seats.push(this.awesomeThings[a].seatPlan);
 
-     console.log(this.seats)
+     //console.log(this.seats)
+   }
+   }
+   catch(e){
+
    }
 
 
@@ -121,19 +128,48 @@ this.name1=sessionStorage.getItem('name');
       .then(response => {
         this.seat2=response.data;
     //    console.log(this.seat2[0].selectedseat);
-for(var i=0;i<=response.data.length;i++)
-{
-        if(this.date==this.seat2[i].showdate && this.time==this.seat2[i].Showtime && this.name1==this.seat2[i].theater)
-        {
-          var booked=this.seat2[i].selectedseat.toString();
-          var d=booked.split(",")
+var a=response.data.length;
 
-          for(var i=0;i<=d.length;i++)
-          {
-          document.getElementById(d[i]).setAttribute("style","fill:brown");
-          }
+var d = [];
+
+  for(var i=0;i<=a;i++)
+  {
+
+
+    try {
+
+      ///////////////////////////////////////////////////////////////////////////////////////
+      if(this.date==this.seat2[i].showdate && this.time==this.seat2[i].Showtime && this.name1==this.seat2[i].theater)
+      {
+
+        var booked=this.seat2[i].selectedseat.toString();
+        console.log(booked);
+
+        var abc = booked.split(",")
+        for(var j = 0 ; j < abc.length ; j++)
+        {
+          d.push(abc[j])
+
         }
+
+          }
+
+      ///////////////////////////////////////////////////////////////////////////////////////
+
+    } catch (e) {
+
+    }
+
 }
+
+
+for(var j = 0 ; j < d.length ; j++)
+{
+
+  document.getElementById(d[j]).setAttribute("style","fill:brown");
+}
+
+
 
       });
 }}
