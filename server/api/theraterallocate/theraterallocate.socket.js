@@ -13,7 +13,7 @@ export function register(socket) {
   // Bind model events to socket events
   for (var i = 0, eventsLength = events.length; i < eventsLength; i++) {
     var event = events[i];
-    var listener = createListener('theraterallocate:' + event, socket);
+    var listener = createListener('thing:' + event, socket);
 
     TheraterallocateEvents.on(event, listener);
     socket.on('disconnect', removeListener(event, listener));

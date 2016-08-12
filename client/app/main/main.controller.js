@@ -1,18 +1,18 @@
-  'use strict';
+'use strict';
 
 (function() {
 
-  class MainController {
+class MainController {
 
-    constructor($http, $scope, socket) {
-      this.$http = $http;
-      this.socket = socket;
-      this.awesomeThings = [];
-      this.movie=[];
-      $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('thing');
-      });
-    }
+  constructor($http, $scope, socket) {
+    this.$http = $http;
+    this.socket = socket;
+    this.awesomeThings = [];
+    this.movie=[];
+    $scope.$on('$destroy', function() {
+      socket.unsyncUpdates('thing');
+    });
+  }
 
 click1(movie)
 {
@@ -20,90 +20,90 @@ click1(movie)
 sessionStorage.setItem('movietitle', movie.title);
 // response.send(a);
 //this.$http.session.val="dd";
-   window.location = "/info";
+ window.location = "/info";
 
 
 }
 
-    $onInit()
-    {
+  $onInit()
+  {
 
-      this.$http.get('/api/theraterallocates')
-          .then(response => {
-            //this.movie = response.data;
+    this.$http.get('/api/theraterallocates')
+        .then(response => {
+          //this.movie = response.data;
 
-            var uniquemovie = {};
-            for(var i = 0; i<= response.data.length; i++)
+          var uniquemovie = {};
+          for(var i = 0; i<= response.data.length; i++)
+          {
+
+            try
             {
-
-              try
+              if(uniquemovie[(""+response.data[i].m_id).toLowerCase()] == undefined)
               {
-                if(uniquemovie[(""+response.data[i].m_id).toLowerCase()] == undefined)
-                {
-                  uniquemovie[(""+response.data[i].m_id).toLowerCase()] = (""+response.data[i].m_id);
-                }
-
-                var newUniquemovie = [];
-                for (var key in uniquemovie)
-                {
-                  if (uniquemovie.hasOwnProperty(key))
-                  {
-                    newUniquemovie.push(uniquemovie[key] );
-                  }
-                }
-
-                this.movie=newUniquemovie;
-
+                uniquemovie[(""+response.data[i].m_id).toLowerCase()] = (""+response.data[i].m_id);
               }
-              catch(e)
-              {}
+
+              var newUniquemovie = [];
+              for (var key in uniquemovie)
+              {
+                if (uniquemovie.hasOwnProperty(key))
+                {
+                  newUniquemovie.push(uniquemovie[key] );
+                }
+              }
+
+              this.movie=newUniquemovie;
+
             }
+            catch(e)
+            {}
+          }
 
-            for(var j=0;j<this.movie.length;j++)
-            {
+          for(var j=0;j<this.movie.length;j++)
+          {
 
-              this.$http.get('/api/omdbiendpoints/'+this.movie[j])
-              .then(response => {
-
-
-
-                this.awesomeThings.push(response.data[0]);
+            this.$http.get('/api/omdbiendpoints/'+this.movie[j])
+            .then(response => {
 
 
-              
 
-              });
-            }
-    });
+              this.awesomeThings.push(response.data[0]);
 
 
 
 
+            });
+          }
+  });
 
 
 
 
-  this.socket.syncUpdates('thing', this.awesomeThings);
 
-    }
 
-    addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing
-        });
-        this.newThing = '';
-      }
-    }
 
-    deleteThing(thing) {
-      this.$http.delete('/api/things/' + thing._id);
+
+this.socket.syncUpdates('thing', this.awesomeThings);
+
+  }
+
+  addThing() {
+    if (this.newThing) {
+      this.$http.post('/api/things', {
+        name: this.newThing
+      });
+      this.newThing = '';
     }
   }
 
-  angular.module('merafilmApp')
-    .component('main', {
-      templateUrl: 'app/main/main.html',
-      controller: MainController
-    });
+  deleteThing(thing) {
+    this.$http.delete('/api/things/' + thing._id);
+  }
+}
+
+angular.module('merafilmApp')
+  .component('main', {
+    templateUrl: 'app/main/main.html',
+    controller: MainController
+  });
 })();

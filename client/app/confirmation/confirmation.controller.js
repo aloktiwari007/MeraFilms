@@ -16,7 +16,7 @@ class ConfirmationComponent {
     this.seat;
     this.price;
     this.ticketid;
-    
+
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });

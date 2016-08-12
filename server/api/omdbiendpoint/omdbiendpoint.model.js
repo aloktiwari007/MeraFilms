@@ -11,10 +11,10 @@ var OmdbiendpointSchema = new mongoose.Schema({
   director:String,
   language: String,
   duration: String,
-  
+  plot:String
 
-  //info: String,
-  //active: Boolean
+
+
 });
 
 export default mongoose.model('Omdbiendpoint', OmdbiendpointSchema);

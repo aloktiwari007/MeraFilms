@@ -21,6 +21,8 @@ $scope.dates=[];
     this.newUniquecity = [];
     this.newUniqueaddress = [];
 
+  //  this.show=0;
+this.hide=0;
 this.name1=[];
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
@@ -37,7 +39,7 @@ this.name1=[];
         .then(response => {
 
     this.s=response.data;
-    //console.log(response);
+
     this.socket.syncUpdates('thing', this.s);
 
         });
@@ -52,7 +54,7 @@ $onInit()
        .then(response => {
          this.movie=response.data;
 
-
+this.socket.syncUpdates('thing', this.movie);
 
 
    });
@@ -61,10 +63,13 @@ $onInit()
 
 }
 
+
 deletesch(movies)
 {
   this.$http.delete('/api/theraterallocates/' + movies._id);
-  location.reload();
+//  location.reload();
+
+this.socket.syncUpdates('thing', this.newUniquecity);
 }
 
 date1()
@@ -135,9 +140,79 @@ this.socket.syncUpdates('thing', this.newUniquecity);
 
 }
 
+
+updatething(data)
+{
+
+  this.$http.get('/api/theraterallocates')
+    .then(response => {
+      response.data;
+
+      var flag=false;
+
+
+      for(var i=0;i<=response.data.length;i++)
+      {
+     console.log(response.data);
+     try{
+      if( response.data[i].state==data.state && response.data[i].location==data.location && response.data[i].date==data.date && response.data[i].start_time==data.start_time) //&& this.movie.state==this.state && this.movie.location== this.city && this.movie.start_time==this.time && this.movie.date==this.date  )
+      {
+
+        flag=true;
+
+      }
+    }catch(e){}
+
+        }
+        if(data.date==undefined)
+        {
+          alert("date not valid , enter the date in 'DD/MM/YYYY' formate ");
+          }
+
+      ///////////////
+      if(flag)
+      {
+      alert("Theater allready booked");
+
+      }
+      else {
+    this.$http.put('/api/theraterallocates/'+data._id ,JSON.stringify(data));
+      location.reload();
+
+      }
+
+
+
+//this.socket.syncUpdates('thing', this.movie);
+
+
+});
+
+  //try
+
+
+
+}
+//catch(e){}
+
+
+//  this.socket.syncUpdates('thing', this.date);
+  //}
+
+
+
+
+edit($index)
+{
+this.show=$index;
+  console.log("dd");
+
+
+
+}
   finditem()
   {
-  console.log('asd');
+
   //
   var name1=this.title;
    //var t=title.charAt(0).toUpperCase();

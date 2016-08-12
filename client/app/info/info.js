@@ -1,6 +1,6 @@
   'use strict';
-
-angular.module('merafilmApp')
+  
+  angular.module('merafilmApp')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/info', {

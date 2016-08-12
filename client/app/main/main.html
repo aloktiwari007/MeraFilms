@@ -7,11 +7,11 @@
   </style>
 
 <header class="hero-unit" id="banner">
-  <div class="container-fulid">
+  <div class="container-fulid" >
 
 
 
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" >
         <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -77,16 +77,16 @@
 
     <h2 class="page-header" align="center" ><label ><u class=_red-bar>Now Showing</u></label></h2>
     <div  ng-repeat="movie in $ctrl.awesomeThings">
-    <div class="col-md-3 nospace" style = "box-shadow: 2px 2px 20px #000000; margin: 5px; width: 15%;" >
+    <div class="col-lg-2" style = "box-shadow: 2px 2px 20px #000000; margin: 5px; width:auto" >
 
-      <img src="{{movie.poster}}" class="img img-rounded"  alt="image" height="200" style="margin: auto; width: 100%;"  />
+      <img src="{{movie.poster}}" class="img img-rounded"  alt="image" height="300" style="margin: auto; width: 100%;"  />
 
       <h3 style="right-pading:10px ;opacity:0.5; background-color: #AAAAAA; " class="text-nowrap"> {{movie.title}}</h3>
       <h5><span class="label label-pill label-primary">{{movie.language}}</span>
         <span><button class="pull-right img-responsive" title="view traller" ng-click="$ctrl.click1(movie)"><img class="push-right" src="/assets/images/play.jpg"  alt="play"/></button></span></h5>
       <h5><span class="label label-pill label-primary">{{movie.genere}}</span></h5>
       <!-- <form class ="form-group"> -->
-      <h5><button type="button" class="btn btn-default btn-block label-danger" ng-click="$ctrl.click1(movie)" ><h5>Book Show Ticket</h5></button>
+      <button type="button" class="btn btn-default btn-block label-danger" ng-click="$ctrl.click1(movie)" style="white-space:normal;"  >Book Show Ticket</button>
 
 
 
@@ -94,6 +94,7 @@
       <!-- <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
         <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
       </ul> -->
+
     </div>
   </div>
 

@@ -280,10 +280,11 @@ alert("no data found")
           director:this.omdbi.Director,
           language:this.omdbi.Language,
           duration:this.omdbi.Runtime,
+          plot:this.omdbi.Plot
 
       });
 window.alert("data inserted");
-   location.reload();
+   //location.reload();
       this.newThing = '';
     }}
 

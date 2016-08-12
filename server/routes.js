@@ -11,6 +11,11 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+
+
+
+
+  app.use('/api/ratings', require('./api/rating'));
   app.use('/api/payments', require('./api/payment'));
   app.use('/api/infos', require('./api/info'));
   app.use('/api/seats', require('./api/seat'));

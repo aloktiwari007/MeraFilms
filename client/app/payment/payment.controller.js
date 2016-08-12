@@ -71,7 +71,7 @@ else
    this.sbharat=parseFloat(t_bill*parseFloat(this.sbharat)/100);
    this.krishi=parseFloat(t_bill*parseFloat(this.krishi)/100);
 
-  
+
 
  this.totalbill=parseFloat(t_bill+this.s_tax+this.sbharat+this.krishi);
  sessionStorage.setItem('totalbill',this.totalbill);
@@ -129,7 +129,7 @@ alert("Invalid card number");
 
         });
 
-alert("data insted");
+alert("payment done successfully");
 
  window.location = "/confirmation";
 

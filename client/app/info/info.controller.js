@@ -17,6 +17,7 @@ class InfoComponent {
     this.totaltime={};
     this.trailer={};
     this.seat;
+    this.rate=0;
 this.d=0;
 this.t=0;
 this.tl=0;
@@ -24,6 +25,25 @@ this.tl=0;
       socket.unsyncUpdates('thing');
     });
   }
+
+
+
+
+rate1(r)
+{
+
+var m_name=sessionStorage.getItem('movietitle');
+  this.$http.post('/api/ratings ', {
+
+    movie: m_name,
+    rating:r
+
+  });
+
+
+}
+
+
 
 seatselect(name)
 {
@@ -47,20 +67,20 @@ sessionStorage.setItem('seat', this.seat);
 
 
 
-vi()
-{
-  var a=this.awesomeThings.title;
-  console.log(a);
-
-  this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=PK&key=AIzaSyBda0gaY5pCnTsRz7rHNaDdRxQl-uIB03E')
-    .then(response => {
-
-      console.log(response.data.items[0].id.videoId);
-//https://www.youtube.com/watch?v=82ZEDGPCkT8
-});
-
-
-}
+// vi()
+// {
+//   var a=this.awesomeThings.title;
+//   console.log(a);
+//
+//   this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=PK&key=AIzaSyBda0gaY5pCnTsRz7rHNaDdRxQl-uIB03E')
+//     .then(response => {
+//
+//       console.log(response.data.items[0].id.videoId);
+//
+// });
+//
+//
+// }
 
 
 
@@ -113,6 +133,7 @@ gettime(date1)
 sessionStorage.setItem('date', date1);
 
   var uniquetime={};
+  try{
   for(var i=0;i<=this.city.length;i++)
   {
 var a=this.city[i].date;
@@ -136,16 +157,55 @@ var b=this.city[i].state;
       }
 
       this.time = utime;
+
+
+
 this.t=1;
+
+
+
     }
 
 
 }
+
+}
+catch(e){ }
+
+
+this.selecttime=[];
+console.log("wwww");
+var time=new Date();
+var hh=time.getHours();
+var mm=time.getMinutes();
+for(var i=0;i<this.time.length;i++)
+{
+  try{
+  var t=this.time[i];
+  t=t.split(":");
+//will show you the showtime which is greater than or equals to the system time(hours)
+  if(t[0]>=hh)
+   {
+
+     this.selecttime.push(this.time[i]);
+
+   }
+}
+
+catch(e)
+{}
+
+}
+
+
 }
 
 
 getdate(state)
 {
+  try {
+
+
 sessionStorage.setItem('state', state);
 this.state=state;
 console.log(this.city);
@@ -156,8 +216,7 @@ for(var i=0;i<=this.city.length;i++)
    console.log("stae name"+a);
   if(state==a)
   {
-    // this.date.push(this.city[i].date);
-    // this.location1.push(this.city[i].location);
+
     uniquedate[this.city[i].date]=this.city[i].date;
 
     var udate=[];
@@ -167,28 +226,67 @@ for(var i=0;i<=this.city.length;i++)
     if (uniquedate.hasOwnProperty(key)) {
     // console.log("ggh"+uniquedate[key]);
     udate.push( uniquedate[key] );
-    console.log("ggh"+udate);
+
     }
     }
 
-    this.date = udate;
+     this.date = udate;
+
+    //console.log("date"+this.date);
+    //geting the date
+
+
     this.d=1;
 
   }
 
 
+
+
 }
+}
+catch (e) {
+
+}
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd
+}
+if(mm<10){
+    mm='0'+mm
+}
+var today =dd+'/'+mm+'/'+yyyy;
+today=Date.parse(today);
 
 
 
+this.select_date=[];
 
 
+for(var i=0;i<=this.date.length;i++)
+{
 
 
+try{
+  var a=this.date[i];
+  //ddd is a var that hold the data ater split
+  var ddd=a.split('/');
 
 
+if(ddd[0]>=dd && ddd[1]>=mm)
+{
 
+  this.select_date.push(this.date[i]);
 
+}
+}
+catch(e)
+{}
+}
 
 
 
@@ -201,7 +299,7 @@ $onInit()
 
   var b=sessionStorage.getItem('movietitle');
 
-  console.log("movie name"+b);
+
   this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q='+b+'trailer'+'&key=AIzaSyBda0gaY5pCnTsRz7rHNaDdRxQl-uIB03E')
     .then(response => {
 
@@ -214,6 +312,39 @@ document.getElementById('player').setAttribute("src",trailer);
 
 
 });
+
+
+
+this.$http.get('/api/ratings/'+b)
+  .then(response => {
+//    console.log(response.data.rating);
+    var count=0;
+    var i;
+
+     try{
+
+for(i=0;i<=response.data.length;i++)
+{
+
+  count+=response.data[i].rating;
+
+}
+//
+
+}
+ catch(e)
+ {}
+ if(count>0)
+ {
+this.rate=Math.round(count*100/(i*5));
+}
+
+
+});
+
+
+
+
 
 
       this.$http.get('/api/omdbiendpoints/'+b)
@@ -273,7 +404,7 @@ this.$http.get('/api/theraterallocates/'+b )
           // uniqueObj.push(data[i])
           uniquestate[(""+response.data[i].state).toLowerCase()] = (""+response.data[i].state);
         }
-        }
+      }
         //
 
 
@@ -303,7 +434,11 @@ this.$http.get('/api/theraterallocates/'+b )
 
 this.socket.syncUpdates('city', this.newUniquestate);
 
-}}
+}
+}
+
+
+
 
 angular.module('merafilmApp')
   .component('info', {

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/datepicker.css" />
 <script src="bower_components/bootstrap/dist/js/bootstrap-datepicker.js"></script>
 
-<div class="container">
+<div class="container" ng-repeate="moves in $ctrl.find1">
   <div class="row" >
     <div class =".col-sm-12">
   <form  name="form">
@@ -11,12 +11,12 @@
    </span>
 
    <input type="text" name="location" ng-model="$ctrl.location1" placeholder="Enter the director name" class="form-control" /><br>
-   <button type="submit" class="btn btn-primary center-block" ng-click="$ctrl.finditem()" >
+   <button type="submit" class="btn btn-primary center-block" ng-click="$ctrl.finditem()" ng-disabled="form.$invalid" >
      <span class="glyphicon glyphicon-search" aria-hidden="true">
    </span>  Search</button>
-   </form>
+ </form>
 
-<div class="table-responsive"  >
+<div class="table-responsive" ng-if="$ctrl.find1[0].title"  >
      <table class="table ">
 <thead>
    <tr>
@@ -100,6 +100,9 @@
 
    </tbody>
      </table>
+     <button type="submit" class="btn btn-primary center-block" ng-click="$ctrl.addThing()" >
+       <span class="glyphicon glyphicon-plus" aria-hidden="true">
+     </span>  Add Movie</button>
 </div>
 
 
@@ -130,9 +133,7 @@ var app = angular.module('myapp', []);
 </script> -->
 
 
-     <button type="submit" class="btn btn-primary center-block" ng-click="$ctrl.addThing()" >
-       <span class="glyphicon glyphicon-plus" aria-hidden="true">
-     </span>  Add Movie</button>
+
 
      <div class="table-responsive">
           <table class="table ">
@@ -169,15 +170,35 @@ var app = angular.module('myapp', []);
                 {{data.location}}
             </td>
             <td >
+              <div ng-hide="$ctrl.show==$index">
                 {{data.start_time}}
+              </div>
+              <div  >
+                <select class="selectpicker" ng-model="data.start_time" name="time" ng-show="$ctrl.show==$index" >
+                  <option hidden>select Movie Timing</option>
+                 <option  value="09:15" >09:15</option>
+                 <option  value="13:30" >13:30</option>
+                 <option  value="17:00" >17:00</option>
+                  <option  value="20:00" >20:00</option>
+               </select>
+              </div>
             </td>
             <td >
+              <div ng-hide="$ctrl.show==$index" >
                 {{data.date}}
+              </div>
+              <div>
+                <input type="text" ng-model="data.date" ng-show="$ctrl.show==$index"  ng-pattern='/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/(19\d\d|20[12]\d)$/'/>
+              </div>
+
             </td>
             <td >
                 {{data.seat}}
             </td>
-            <td><button type="submit" ng-disabled="disable" class="btn btn-primary center-block" ng-click="$ctrl.updatetheater(thing)" >
+            <td><button type="submit"  class="btn btn-primary center-block" ng-click="$ctrl.edit($index)" >
+
+            </span>  Edit</button></td>
+            <td><button type="submit"  class="btn btn-primary center-block" ng-click="$ctrl.updatething(data)" >
               <span class="glyphicon glyphicon-ok" aria-hidden="true">
             </span>  Update</button></td>
             <td><button type="submit" class="btn btn-primary center-block" ng-click="$ctrl.deletesch(data)" >
@@ -188,7 +209,7 @@ var app = angular.module('myapp', []);
           </table>
           </div>
    </div>
-<div  >
+<div >
 
 
 
