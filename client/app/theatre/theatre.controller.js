@@ -32,28 +32,81 @@ class TheatreComponent {
 updatetheater(theater)
 {
 
-//var seat1=document.getElementById('useat').value;
-//console.log(theater._id);
-//var seat=theater.useat;
-if(theater.seat==80 || theater.seat==100 ||theater.seat==130 )
-{
-
-
-  this.$http.put( '/api/theatres/'+theater._id ,JSON.stringify(theater));
-
-
-
+  var theatername=[];
+    //console.log(movies.title);
+    this.$http.get('/api/theraterallocates')
+      .then(response => {
+    theatername =response.data;
+    var flag=0;
+    console.log(theatername)
+  for(var i=0;i<theatername.length;i++)
+  {
+  if(theater.state== theatername[i].state && theater.location == theatername[i].location )
+  {
+    flag=1;
+  }
+  }
+  if(flag==1)
+  {
+  alert(" Theater is allready book for the movie , so it can't be Update from this page.");
   }
   else {
-  alert('wrong seat entry please enter 80 or 100 0r 130 ');
+
+
+    if(theater.seat==80 || theater.seat==100 ||theater.seat==130 )
+    {
+
+
+      this.$http.put( '/api/theatres/'+theater._id ,JSON.stringify(theater));
+
+
+
+      }
+      else {
+      alert('wrong seat entry please enter 80 or 100 0r 130 ');
+      }
+
   }
+
+  });
+
+
+
+
+
+
+///////
+
 }
 
 deletetheater(theater)
 {
-    this.$http.delete('/api/theatres/' + theater._id);
+  var theatername=[];
+    //console.log(movies.title);
+    this.$http.get('/api/theraterallocates')
+      .then(response => {
+    theatername =response.data;
+    var flag=0;
+    console.log(theatername)
+  for(var i=0;i<theatername.length;i++)
+  {
+  if(theater.state== theatername[i].state && theater.location == theatername[i].location )
+  {
+    flag=1;
+  }
+  }
+  if(flag==1)
+  {
+  alert(" Theater is allready book for the movie , so it can't be delete from this page.");
+  }
+  else {
+this.$http.delete('/api/theatres/' + theater._id);
+  }
+
+});
 
 }
+
 
 
   getdata(){
@@ -98,29 +151,10 @@ this.location1="";
 this.seat="";
       this.newThing = '';
     }
-
-
-
-  //   update(thearupdate)
-  //   {
-  //
-  //       this.$http.put('/api/theatres/'+ '578cf866677c5b84183f730d', {
-  //         countery:this.country,
-  //         state:[{
-  //           s_name:this.state,
-  //         city:[{
-  //         c_name:this.city,
-  //         address:this.address,
-  //       }],
-  //
-  //         }],
-  //
-  //       });
-  // window.alert("data updated");
-  //       this.newThing = '';
-  //     }}
-
 }
+
+
+
 
 
 angular.module('merafilmApp')

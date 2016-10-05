@@ -52,14 +52,14 @@
 
    <td>
 
-     <select class="selectpicker"  ng-change="$ctrl.findcity()" ng-model="$ctrl.state" name="state"   >
+     <select class="selectpicker"  ng-change="$ctrl.findcity()" ng-model="$ctrl.state" name="state"  required >
        <option hidden>select state</option>
        <option    ng-repeat="state in $ctrl.newUniquestate"    value="{{state}}">{{state}}</option>
-       {{state._id}}
+       <!-- {{state._id}} -->
      </select>
    </td>
    <td>
-     <select class="selectpicker" ng-change="$ctrl.getseat()" ng-model="$ctrl.city" name="city">
+     <select class="selectpicker" ng-change="$ctrl.getseat()" ng-model="$ctrl.city" name="city" >
        <option hidden>select Location</option>
        <option ng-repeat="city in $ctrl.newUniquecity"  value="{{city}}">{{city}}</option>
      </select>
@@ -68,7 +68,7 @@
    </td>
    <td >
     <select class="selectpicker" ng-model="$ctrl.time" name="time" >
-      <option hidden>select Movie Timing</option>
+      <option value="" hidden>select Movie Timing</option>
      <option  value="09:15" >09:15</option>
      <option  value="13:30" >13:30</option>
      <option  value="17:00" >17:00</option>
@@ -76,7 +76,7 @@
    </select></td>
    <td>
      <div >
-                    <input  type="text" placeholder="click to show datepicker" name="date"  id="date" ng-model="$ctrl.date">
+                    <input  type="text" placeholder="click to show datepicker" name="date"  id="date" ng-model="$ctrl.date" required/>
                 </div>
 
                 <script type="text/javascript">
@@ -84,8 +84,12 @@
                             $(document).ready(function () {
 
                                 $('#date').datepicker({
+
+
                                     format: "dd/mm/yyyy"
+
                                 });
+
 
                             });
                         </script>

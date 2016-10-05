@@ -11,7 +11,13 @@ var OmdbiendpointSchema = new mongoose.Schema({
   director:String,
   language: String,
   duration: String,
-  plot:String
+  plot:String,
+    imdbID:String
+
+
+
+
+
 
 
 

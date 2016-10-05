@@ -10,6 +10,6 @@ router.get('/:movie', controller.showrating);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
-router.delete('/:id', controller.destroy);
+router.delete('/:movie', controller.destroy);
 
 module.exports = router;

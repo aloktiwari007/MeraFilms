@@ -208,12 +208,12 @@ getdate(state)
 
 sessionStorage.setItem('state', state);
 this.state=state;
-console.log(this.city);
+
 var uniquedate={};
 for(var i=0;i<=this.city.length;i++)
 {
    var a=this.city[i].state;
-   console.log("stae name"+a);
+   console.log("state name"+a);
   if(state==a)
   {
 
@@ -259,8 +259,8 @@ if(dd<10){
 if(mm<10){
     mm='0'+mm
 }
-var today =dd+'/'+mm+'/'+yyyy;
-today=Date.parse(today);
+//var today =dd+'/'+mm+'/'+yyyy;
+//today=Date.parse(today);
 
 
 
@@ -275,9 +275,9 @@ try{
   var a=this.date[i];
   //ddd is a var that hold the data ater split
   var ddd=a.split('/');
+console.log("ddd"+ddd);
 
-
-if(ddd[0]>=dd && ddd[1]>=mm)
+if(ddd[0]>=dd || ddd[1]>=mm || ddd[2]>=yyyy)
 {
 
   this.select_date.push(this.date[i]);
@@ -303,8 +303,9 @@ $onInit()
   this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q='+b+'trailer'+'&key=AIzaSyBda0gaY5pCnTsRz7rHNaDdRxQl-uIB03E')
     .then(response => {
 
+
 var trailer_id=response.data.items[0].id.videoId;
-console.log("trailer_id"+trailer_id);
+
 var trailer="https://www.youtube.com/embed/"+trailer_id;
 
 
@@ -317,7 +318,7 @@ document.getElementById('player').setAttribute("src",trailer);
 
 this.$http.get('/api/ratings/'+b)
   .then(response => {
-//    console.log(response.data.rating);
+
     var count=0;
     var i;
 
@@ -367,7 +368,7 @@ this.rate=Math.round(count*100/(i*5));
             var tmh=Math.floor(t_min/60);
             var tmm=t_min % 60*1;
 
-this.totaltime=tmh+" "+"hr"+" "+tmm+" "+"min";
+            this.totaltime=tmh+" "+"hr"+" "+tmm+" "+"min";
 
 
           }
@@ -377,6 +378,7 @@ this.totaltime=tmh+" "+"hr"+" "+tmm+" "+"min";
           }
 
           this.socket.syncUpdates('thing', this.awesomeThings);
+
 
         });
 
@@ -388,7 +390,7 @@ this.totaltime=tmh+" "+"hr"+" "+tmm+" "+"min";
 this.$http.get('/api/theraterallocates/'+b )
   .then(response => {
 
-    this.city =response.data;
+        this.city =response.data;
 
 
 

@@ -384,15 +384,20 @@ console.log(this.dates);
   addThing() {
 
 console.log("thie date"+this.date1);
+var a=document.getElementById('date').value;
 
 var flag;
+
 for(var i=0;i<this.movie.length;i++)
 {
-if( this.movie[i].state==this.state && this.movie[i].location==this.city && this.movie[i].date==document.getElementById('date').value && this.movie[i].start_time==this.time) //&& this.movie.state==this.state && this.movie.location== this.city && this.movie.start_time==this.time && this.movie.date==this.date  )
+if( this.movie[i].state==this.state && this.movie[i].location==this.city && this.movie[i].date==a && this.movie[i].start_time==this.time) //&& this.movie.state==this.state && this.movie.location== this.city && this.movie.start_time==this.time && this.movie.date==this.date  )
 {
   flag=true;
   //alert("Therater allready book");
 }}
+
+
+
 
 if(flag)
 {

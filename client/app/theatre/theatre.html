@@ -6,8 +6,8 @@
  <input type="text" name="state" ng-model="$ctrl.state" placeholder="Enter the state" class="form-control" required/><br>
 
  <input type="text" name="location" ng-model="$ctrl.location1" placeholder="Enter the theater address" class="form-control" required/><br>
- <select class="selectpicker  form-control" placeholder="select" name="seat" ng-model="$ctrl.seat" required >
-<option hidden>select theater capacity</option>
+ <select class="selectpicker  form-control" style="color:grey"  name="seat" ng-model="$ctrl.seat" required >
+<option value="" disabled selected hidden>select theater capacity</option>
 <option value="80">80 seats</option>
 <option value="100">100 seats</option>
 <option value="130">130 seats</option>
@@ -40,7 +40,7 @@
 
 </td>
 
-<td><span ng-init="disable=true"> <a  ng-click="disable=false" style="color:green" href="#">Edit</a></span></</td>
+<td><span ng-init="disable=true"> <a  ng-click="disable=false" style="color:green" href="#">Edit</a></span></td>
 <td><button type="submit" ng-disabled="disable" class="btn btn-primary center-block" ng-click="$ctrl.updatetheater(thing)" >
   <span class="glyphicon glyphicon-ok" aria-hidden="true">
 </span>  Update</button></td>

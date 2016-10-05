@@ -120,9 +120,16 @@ export function patch(req, res) {
 }
 
 // Deletes a Rating from the DB
+// export function destroy(req, res) {
+//   return Rating.findById(req.params.id).exec()
+//     .then(handleEntityNotFound(res))
+//     .then(removeEntity(res))
+//     .catch(handleError(res));
+// }
+
 export function destroy(req, res) {
-  return Rating.findById(req.params.id).exec()
+  return Rating.find({movie:req.params.movie}).exec()
     .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
+    .then(respondWithResult(res))
     .catch(handleError(res));
 }

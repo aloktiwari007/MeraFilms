@@ -24,7 +24,7 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img src="/assets/images/caursol/sultan.jpg" alt="Chania" >
+            <img src="/assets/images/caursol/caursol.jpg"  alt="pic" >
 
             <div class="carousel-caption">
 
@@ -32,26 +32,18 @@
           </div>
 
           <div class="item" >
-            <img src="/assets/images/caursol/pic1.jpg" alt="Chania" >
-            <div class="carousel-caption">
+            <img src="/assets/images/caursol/caursol1.jpg" alt="pic" >
 
-            </div>
           </div>
 
           <div class="item">
-            <img src="/assets/images/caursol/rajasthan.jpg" alt="Flower" >
-            <div class="carousel-caption">
-              <h3>Flowers</h3>
-              <p>Beatiful flowers in Kolymbari, Crete.</p>
-            </div>
+            <img src="/assets/images/caursol/caursol2.jpg" alt="pic" >
+
           </div>
 
           <div class="item">
-            <img src="/assets/images/caursol/superhero.jpg" alt="Flower" >
-            <div class="carousel-caption">
-              <h3>Flowers</h3>
-              <p>Beatiful flowers in Kolymbari, Crete.</p>
-            </div>
+            <img src="/assets/images/caursol/caursol3.jpg" alt="pic" >
+
           </div>
 
         </div>
@@ -65,6 +57,7 @@
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+
       </div>
     </div>
 
@@ -72,40 +65,26 @@
   </div>
 </header>
 
-<div class="container" style="margin: auto; width: 95%;">
+<div class="container" >
   <div class="row">
+      <input type="text" name="state" ng-model="moviename" placeholder="Search your movie" class="form-control" style="margin-top:20px"   />
+    <h2 class="page-header" align="center" ><label ><u style="color:red">Now Showing</u></label></h2>
 
-    <h2 class="page-header" align="center" ><label ><u class=_red-bar>Now Showing</u></label></h2>
-    <div  ng-repeat="movie in $ctrl.awesomeThings">
-    <div class="col-lg-2" style = "box-shadow: 2px 2px 20px #000000; margin: 5px; width:auto" >
+    <div  ng-repeat="movie in $ctrl.awesomeThings | filter:moviename">
+    <div class="col-lg-3" style = "box-shadow: 2px 2px 20px #000000; margin: 10px; width:23%"   >
 
       <img src="{{movie.poster}}" class="img img-rounded"  alt="image" height="300" style="margin: auto; width: 100%;"  />
 
-      <h3 style="right-pading:10px ;opacity:0.5; background-color: #AAAAAA; " class="text-nowrap"> {{movie.title}}</h3>
-      <h5><span class="label label-pill label-primary">{{movie.language}}</span>
+      <h3 style="right-pading:10px ;opacity:0.9; background-color: #AAAAAA; " class="text-nowrap"> {{movie.title}}</h3>
+      <h5><span class="label label-primary">{{movie.language}}</span>
         <span><button class="pull-right img-responsive" title="view traller" ng-click="$ctrl.click1(movie)"><img class="push-right" src="/assets/images/play.jpg"  alt="play"/></button></span></h5>
-      <h5><span class="label label-pill label-primary">{{movie.genere}}</span></h5>
-      <!-- <form class ="form-group"> -->
-      <button type="button" class="btn btn-default btn-block label-danger" ng-click="$ctrl.click1(movie)" style="white-space:normal;"  >Book Show Ticket</button>
+      <h5><span class="label label-primary">{{movie.genere}}</span></h5>
 
+      <button type="button" class="btn btn-default btn-block label-danger" ng-click="$ctrl.click1(movie)"  >Book Show Ticket</button>
 
-
-
-      <!-- <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
-      </ul> -->
-
-    </div>
+        </div>
   </div>
 
-  <!-- <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
-      </span>
-    </p>
-  </form> -->
+
 </div>
 </div>

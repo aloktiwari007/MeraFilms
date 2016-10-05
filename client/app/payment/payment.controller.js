@@ -82,7 +82,7 @@ else
 addthing()
 {
   var number=this.number.toString();
-  console.log();
+
   var cname=this.name;
   var cvv=this.cvv.toString();
   //var cvv=this.cvv.toString();
@@ -129,7 +129,7 @@ alert("Invalid card number");
 
         });
 
-alert("payment done successfully");
+// alert("payment done successfully");
 
  window.location = "/confirmation";
 

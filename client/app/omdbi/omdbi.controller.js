@@ -27,7 +27,7 @@ class OmdbiComponent {
 
 finditem()
 {
-  console.log('asd');
+
 
 var state=this.state;
 console.log("hello"+state);
@@ -41,7 +41,7 @@ this.$http.get('/api/theatres/'+state)
       var uniquecity = {};
 
 
-      console.log(response.data);
+
 
       for(var i = 0; i< response.data.length; i++)
       {
@@ -58,7 +58,7 @@ this.$http.get('/api/theatres/'+state)
 
       for (var key in uniquecity) {
       if (uniquecity.hasOwnProperty(key)) {
-        // console.log(uniqueCountries[key]);
+
         newUniquecity.push( uniquecity[key] );
       }
       }
@@ -85,7 +85,7 @@ console.log(this.newUniquecity);
     this.$http.get('/api/omdbiendpoints')
       .then(response => {
         this.awesomeThings =response.data;
-        console.log("hello");
+
 
         this.socket.syncUpdates('thing', this.awesomeThings);
         //------
@@ -230,10 +230,50 @@ this.newUniqueaddress = newUniqueaddress;
   deleteMovie(movies)
   {
 
+  var moviename=[];
 
 
 
-    this.$http.delete('/api/omdbiendpoints/' + movies._id);
+    console.log(movies.title);
+    this.$http.get('/api/theraterallocates')
+      .then(response => {
+    moviename =response.data;
+
+var flag=0;
+
+
+for(var i=0;i<moviename.length;i++)
+{
+console.log(moviename[i].m_id);
+
+if(movies.title== moviename[i].m_id )
+{
+
+flag=1;
+
+
+
+}
+
+
+
+}
+
+ if(flag==1)
+
+ {
+alert(" Movie is schulede in some theaters , so it can't be delete from this page.");
+}
+else {
+ this.$http.delete('/api/omdbiendpoints/' + movies._id);
+ // this.$http.delete('/api/ratings/'+movies.title);
+}
+
+
+
+
+  });
+
       // location.reload();
 
   }
@@ -270,6 +310,7 @@ alert("no data found")
 
 
   addThing() {
+    try{
 
       this.$http.post('/api/omdbiendpoints', {
         poster: this.omdbi.Poster,
@@ -280,10 +321,16 @@ alert("no data found")
           director:this.omdbi.Director,
           language:this.omdbi.Language,
           duration:this.omdbi.Runtime,
-          plot:this.omdbi.Plot
+          plot:this.omdbi.Plot,
+          imdbID:this.omdbi.imdbID
 
       });
-window.alert("data inserted");
+
+}
+catch(e)
+{
+  console.log(e);
+}
    //location.reload();
       this.newThing = '';
     }}

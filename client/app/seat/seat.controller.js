@@ -50,12 +50,13 @@ this.selectedseat.push(seat);
 }
 else if(color=="fill:green")
 {
-  console.log(seat);
   document.getElementById(seat).setAttribute("style","fill:''");
+  console.log(seat);
 this.ss--;
 this.totalprice=this.totalprice-price;
 
 var data=this.selectedseat.indexOf(seat);
+console.log(data);
 if(data>-1)
 {
   this.selectedseat.splice (data,1);

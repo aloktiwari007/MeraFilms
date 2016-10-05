@@ -109,3 +109,15 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+
+// export function destroy(req, res) {
+//
+//
+//
+//   return Theraterallocate.find({m_id: req.params.m_id}).exec()
+//
+//     .then(handleEntityNotFound(res))
+//     .then(removeEntity(res))
+//     .catch(handleError(res));
+// }

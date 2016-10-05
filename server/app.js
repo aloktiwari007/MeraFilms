@@ -30,7 +30,13 @@ var socketio = require('socket.io')(server, {
 require('./config/socketio').default(socketio);
 require('./config/express').default(app);
 require('./routes').default(app);
+//--------------------------------------------
 
+// var msg=require(twilio)('AC25c04a2bd51b6755ce6f327a34f69d38','d7ae97c6d83a5619978078d7fdfabfff');
+
+
+
+//-----------------------------------------------
 // Start server
 function startServer() {
   app.angularFullstack = server.listen(config.port, config.ip, function() {
